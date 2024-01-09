@@ -6,8 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.dagger_mvvm.models.ProductItems
 import com.example.dagger_mvvm.repository.ProductRepository
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(private val repository: ProductRepository): ViewModel() {
+class MainViewModel @Inject constructor(private val repository: ProductRepository): ViewModel() {
     val productLiveData: LiveData<List<ProductItems>>
         get() = repository.product
 
