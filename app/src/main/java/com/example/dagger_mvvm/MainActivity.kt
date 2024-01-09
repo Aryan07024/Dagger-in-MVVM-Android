@@ -9,7 +9,7 @@ import com.example.dagger_mvvm.viewmodels.MainViewModelFactory
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    lateinit var mainViewModel: MainViewModel
+    private lateinit var mainViewModel: MainViewModel
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
     private val products: TextView
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         (application as FakerApplication).applicationComponent.inject(this)
         mainViewModel = ViewModelProvider(this,mainViewModelFactory)[MainViewModel::class.java]
         mainViewModel.productLiveData.observe(this) {
-            it.joinToString { x -> x.title + "\n\n" }
+            products.text = it.joinToString { x -> x.title + "\n\n" }
         }
     }
 }
